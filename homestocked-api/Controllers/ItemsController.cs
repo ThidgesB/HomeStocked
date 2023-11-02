@@ -9,7 +9,7 @@ using HomestockedAPI.Models;
 
 namespace HomestockedAPI.Controllers;
 
-[Route("api/[controller]")]
+[Route("items")]
 [ApiController]
 public class ItemsController : ControllerBase
 {
@@ -20,14 +20,14 @@ public class ItemsController : ControllerBase
         _context = context;
     }
 
-    // GET: api/Items
+    // GET: /items
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ItemDTO>>> GetItems()
     {
         return await _context.Items.Select(x => ItemToDTO(x)).ToListAsync();
     }
 
-    // GET: api/Items/5
+    // GET: /items/5
     [HttpGet("{id}")]
     public async Task<ActionResult<ItemDTO>> GetItem(long id)
     {
@@ -41,7 +41,7 @@ public class ItemsController : ControllerBase
         return ItemToDTO(item);
     }
 
-    // PUT: api/Items/5
+    // PUT: /items/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
     public async Task<IActionResult> PutItem(long id, ItemDTO itemDTO)
@@ -76,7 +76,7 @@ public class ItemsController : ControllerBase
         return NoContent();
     }
 
-    // POST: api/Items
+    // POST: /items
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult<ItemDTO>> PostItem(ItemDTO itemDTO)
@@ -97,7 +97,7 @@ public class ItemsController : ControllerBase
         return CreatedAtAction(nameof(GetItem), new { id = item.Id }, ItemToDTO(item));
     }
 
-    // DELETE: api/Items/5
+    // DELETE: /items/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteItem(long id)
     {
